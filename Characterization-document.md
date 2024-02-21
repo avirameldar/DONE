@@ -1,18 +1,3 @@
-<div style="display: none;">
-
-<style>
-    H1, h3{
-        color: lightBlue;
-    }
-    img{
-        width: 100px;
-    }
-    #done{
-        color: orange;
-    }
-</style>
-</div>
-
 ![logo](./LOGO/done-logoDark.png)
 
 # Welcom to 'DONE'
