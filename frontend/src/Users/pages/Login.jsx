@@ -1,22 +1,22 @@
-import "./login.css"
-import { FaLock } from "react-icons/fa"
-import { MdOutlineEmail } from "react-icons/md"
-import { useNavigate } from "react-router-dom"
-import { useFormik } from "formik"
-import Joi from "joi"
-import Input from "../components/input"
-import { validateFormikUsingJoi } from "../../utils/validateFormikUsingJoi"
-import { useState } from "react"
-import Paths from '../../utils/Paths'
-import { login as loginReq } from '../../api/user'
+import "./login.css";
+import { FaLock } from "react-icons/fa";
+import { MdOutlineEmail } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import Joi from "joi";
+import Input from "../components/input";
+import { validateFormikUsingJoi } from "../../utils/validateFormikUsingJoi";
+import { useState } from "react";
+import Paths from "../../utils/Paths";
+import { login as loginReq } from "../../api/user";
 
 const Login = () => {
-  const [serverError, setServerError] = useState("")
-  const navigate = useNavigate()
+  const [serverError, setServerError] = useState("");
+  const navigate = useNavigate();
 
   const goSign = () => {
-    navigate(Paths.SIGN_UP)
-  }
+    navigate(Paths.SIGN_UP);
+  };
 
   const form = useFormik({
     validateOnMount: true,
@@ -30,26 +30,27 @@ const Login = () => {
         .max(255)
         .required()
         .email({ tlds: { allow: false } }),
-      password: Joi.string().min(6).max(1024)/*.pattern('())!@%$#^&*-_*')*/.required(),
+      password: Joi.string()
+        .min(6)
+        .max(1024) /*.pattern('())!@%$#^&*-_*')*/
+        .required(),
     }),
 
     async onSubmit(values) {
       try {
-        await loginReq(values)
+        await loginReq(values);
 
-        navigate(Paths.HOME)
-
+        navigate(Paths.ROOT);
       } catch (err) {
         if (err.response?.status === 400) {
-          setServerError(err.response.data)
+          setServerError(err.response.data);
         }
       }
     },
-  })
+  });
 
   return (
     <div className="wrapper">
-
       <div className="formContainer">
         <div className="logo">
           <img src="/img/done-logo.png" width="240px" alt="logo" />
@@ -89,15 +90,19 @@ const Login = () => {
           </button>
           <div className="register-link">
             <p>
-              Don't have account? <span onClick={goSign} style={{ textDecoration: 'underline', cursor: 'pointer' }}>Sign up</span>
+              Don't have account?{" "}
+              <span
+                onClick={goSign}
+                style={{ textDecoration: "underline", cursor: "pointer" }}
+              >
+                Sign up
+              </span>
             </p>
           </div>
         </form>
-
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
