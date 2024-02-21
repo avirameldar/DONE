@@ -1,3 +1,5 @@
+<div style="display: none;">
+
 <style>
     H1, h3{
         color: lightBlue;
@@ -9,8 +11,7 @@
         color: orange;
     }
 </style>
-
-[instraction for me!](https://medium.com/@ctrlshifti/generic-guide-for-documenting-web-projects-4d6110557e4b)
+</div>
 
 ![logo](./LOGO/done-logoDark.png)
 
