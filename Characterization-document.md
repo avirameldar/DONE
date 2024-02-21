@@ -112,6 +112,28 @@ In order to enter as Admin you need to log-in with the user details:<br>
 email: you@you.com <br>
 password: Youyou1!
 
+### .env:
+
+    PORT = 5010
+    LOGGER = "morgan"
+    JWT_SECRET = "done23"
+    DB = "MONGODB"
+    ATLAS_USER_NAME = avirameldar
+    ATLAS_PASSWORD = done
+    MONGODB = mongodb+srv://avirameldar:done@cluster0.twlhtwx.mongodb.net
+    ENVIRONMENT = "production"
+    #ENVIRONMENT = "development"#* If we want to work with the local environment
+    TOKEN_GENERATOR = "jwt"
+    VALIDATOR = "Joi"
+
+### config.json:
+
+    {
+    "apiUrl": "http://localhost:5010"
+    }
+
+<br><br><br><br>
+
 ### Enjoy
 
 &copy; aviram.eldar@gmail.com

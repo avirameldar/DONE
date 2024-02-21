@@ -1,47 +1,46 @@
-import React from "react"
-import "./navBar.css"
-import { AiOutlineInfoCircle } from "react-icons/ai"
-import { BsToggleOff } from "react-icons/bs"
-import { BsToggleOn } from "react-icons/bs"
-import { BiMoon } from "react-icons/bi"
-import { BsSun } from "react-icons/bs"
-import { GrSearch } from "react-icons/gr"
-import { useNavigate } from "react-router-dom"
-import { DarkModeContext } from "../../../providers/DarkModeProvider"
-import MenuIcon from '@mui/icons-material/Menu'
-import AppMenu from '../../../components/common/AppMenu'
-import SelfArea from '../SelfArea'
-import { getUser as getStoredUser } from '../../../api/user'
-import Paths from "../../../utils/Paths"
+import React from "react";
+import "./navBar.css";
+import { AiOutlineInfoCircle } from "react-icons/ai";
+import { BsToggleOff } from "react-icons/bs";
+import { BsToggleOn } from "react-icons/bs";
+import { BiMoon } from "react-icons/bi";
+import { BsSun } from "react-icons/bs";
+import { GrSearch } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
+import { DarkModeContext } from "../../../providers/DarkModeProvider";
+import MenuIcon from "@mui/icons-material/Menu";
+import AppMenu from "../../../components/common/AppMenu";
+import SelfArea from "../SelfArea";
+import { getUser as getStoredUser } from "../../../api/user";
+import Paths from "../../../utils/Paths";
 
 const NavBar = (props) => {
-  const [crrUser, setCrrUser] = React.useState(undefined)
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-  const { darkMode, toggleDarkMode } = React.useContext(DarkModeContext)
-  const [activeTab, setActiveTab] = React.useState("All Tasks")
+  const [crrUser, setCrrUser] = React.useState(undefined);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { darkMode, toggleDarkMode } = React.useContext(DarkModeContext);
+  const [activeTab, setActiveTab] = React.useState("All Tasks");
 
   React.useEffect(() => {
-    if (!props.users.length || crrUser) return
+    if (!props.users.length || crrUser) return;
 
-    const user = getStoredUser()
+    const user = getStoredUser();
 
-    const foundedUser = props.users.find(u => u.email === user.email)
+    const foundedUser = props.users.find((u) => u.email === user.email);
 
-    setCrrUser(foundedUser)
-  }, [props.users, crrUser])
+    setCrrUser(foundedUser);
+  }, [props.users, crrUser]);
 
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const logoSrc = darkMode ? "/img/done-logoDark.png" : "/img/done-logo.png"
+  const logoSrc = darkMode ? "/img/done-logoDark.png" : "/img/done-logo.png";
 
   const closeMenu = () => {
-    setIsMenuOpen(false)
-  }
+    setIsMenuOpen(false);
+  };
 
   const toggleOpenMenu = () => {
-    setIsMenuOpen(true)
-  }
+    setIsMenuOpen(true);
+  };
 
   return (
     <>
@@ -50,8 +49,12 @@ const NavBar = (props) => {
           className={` navbar ${darkMode ? "dark-mode" : ""} navbar-expand-lg`}
         >
           <div className="container-fluid m-3">
-
-            {crrUser && <MenuIcon style={{ marginRight: '4%', cursor: 'pointer' }} onClick={toggleOpenMenu} />}
+            {crrUser && (
+              <MenuIcon
+                style={{ marginRight: "4%", cursor: "pointer" }}
+                onClick={toggleOpenMenu}
+              />
+            )}
 
             <img src={logoSrc} width="120px" alt="logo" />
 
@@ -69,7 +72,7 @@ const NavBar = (props) => {
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
             >
-              <div className="search-container">
+              {/* <div className="search-container">
                 <form className="d-flex" role="search">
                   <GrSearch
                     size={"20"}
@@ -83,11 +86,9 @@ const NavBar = (props) => {
                     aria-label="Search"
                   />
                 </form>
-              </div>
+              </div> */}
               <div className="links-container">
-
                 <ul className="navbar-nav mb-2 mb-lg-0 px-3">
-
                   <li className="nav-item px-2">
                     <button
                       className={`design ${darkMode ? "dark-mode" : ""}`}
@@ -105,11 +106,12 @@ const NavBar = (props) => {
 
                   <li className="nav-item px-2">
                     <button
-                      className={`nav-link  ${darkMode ? "dark-mode" : ""} ${activeTab === "about" ? "active" : ""
-                        }`}
+                      className={`nav-link  ${darkMode ? "dark-mode" : ""} ${
+                        activeTab === "about" ? "active" : ""
+                      }`}
                       onClick={() => {
-                        navigate(Paths.ABOUT)
-                        setActiveTab("about")
+                        navigate(Paths.ABOUT);
+                        setActiveTab("about");
                       }}
                     >
                       <AiOutlineInfoCircle size={"25"} /> About
@@ -122,9 +124,13 @@ const NavBar = (props) => {
         </nav>
       </div>
 
-      <AppMenu openMenu={isMenuOpen} close={closeMenu} menuBody={<SelfArea user={crrUser} />} />
+      <AppMenu
+        openMenu={isMenuOpen}
+        close={closeMenu}
+        menuBody={<SelfArea user={crrUser} />}
+      />
     </>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

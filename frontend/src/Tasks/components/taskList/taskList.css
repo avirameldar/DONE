@@ -26,13 +26,16 @@
 .tasks-container {
   display: flex;
   flex-direction: column;
-  color: lightgreen;
+  color: #ffba00;
   align-items: center;
   justify-content: center;
-  gap: 3%
+  gap: 3%;
+  margin: 20px;
 }
 
-.tasks-container>div {
+.tasks-container > div {
+  margin: 60px;
+
   grid-template-columns: auto auto auto;
   display: grid;
   gap: 3%;
